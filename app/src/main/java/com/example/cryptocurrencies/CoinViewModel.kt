@@ -16,12 +16,14 @@ class CoinViewModel: ViewModel() {
     private val _liveDataCoins = MutableLiveData<List<RecycleCoin>>()
     private val _selectedCurrency = MutableLiveData<Currency>()
     private val _informCoin = MutableLiveData<List<String>>()
+    private val _idCoin = MutableLiveData<String?>()
     private val _loading = MutableLiveData(false)
     private val _error = MutableLiveData(false)
 
     val liveDataCoins: LiveData<List<RecycleCoin>> = _liveDataCoins
     val selectedCurrency: LiveData<Currency> = _selectedCurrency
     val informCoin: LiveData<List<String>> = _informCoin
+    val idCoin: LiveData<String?> = _idCoin
     val loading: LiveData<Boolean> = _loading
     val error: LiveData<Boolean> = _error
 
@@ -32,7 +34,8 @@ class CoinViewModel: ViewModel() {
 
     val coinsApi = retrofit.create(CoinsApi::class.java)
 
-    private fun setUpListCoins(currency: String) {
+    private fun setUpListCoins(currency: String, coinsCurrency: Currency) {
+        _idCoin.value = null
         _loading.value = true
         _error.value = false
         viewModelScope.launch {
@@ -47,7 +50,7 @@ class CoinViewModel: ViewModel() {
                         priceChange = (it.price_change_percentage_24h * 100).toInt() / 100.0,
                         imageCoin = it.image,
                         idCoin = it.id,
-                        currency = Currency.USD
+                        currency = coinsCurrency
                     )
                 }
                 _loading.value = false
@@ -62,6 +65,7 @@ class CoinViewModel: ViewModel() {
     val informCoinApi = retrofit.create(InformCoinApi::class.java)
 
     fun getInformCoinById(id: String) {
+        _idCoin.value = id
         _loading.value = true
         _error.value = false
         viewModelScope.launch {
@@ -72,12 +76,11 @@ class CoinViewModel: ViewModel() {
                 listInform.add(coins.name)
                 listInform.add(coins.image.large)
                 listInform.add(
-                    coins.description.en ?: "Information about this cryptocurrency has not " +
-                    "been found. You can find all the necessary information on the Internet yourself."
+                    coins.description.en
                 )
                 var categories = ""
                 coins.categories.forEach {
-                    categories = categories + it + ", "
+                    categories = categories + it + ". "
                 }
                 listInform.add(categories)
                 _loading.value = false
@@ -93,11 +96,11 @@ class CoinViewModel: ViewModel() {
         when(coinsCurrency) {
             Currency.USD -> {
                 _selectedCurrency.value = Currency.USD
-                setUpListCoins("usd")
+                setUpListCoins("usd", Currency.USD)
             }
             Currency.RUB -> {
                 _selectedCurrency.value = Currency.RUB
-                setUpListCoins("rub")
+                setUpListCoins("rub", Currency.RUB)
             }
         }
     }

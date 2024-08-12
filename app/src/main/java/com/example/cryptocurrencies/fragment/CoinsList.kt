@@ -66,12 +66,12 @@ class CoinsList() : Fragment() {
         }
 
         binding.usdBut.setOnClickListener {
-            adapter.setCoinsList(listOf())
+            //adapter.setCoinsList(listOf())
             coinViewModel.currencySelection(Currency.USD)
         }
 
         binding.rubBut.setOnClickListener {
-            adapter.setCoinsList(listOf())
+            //adapter.setCoinsList(listOf())
             coinViewModel.currencySelection(Currency.RUB)
         }
 

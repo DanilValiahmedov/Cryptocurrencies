@@ -28,11 +28,11 @@ class InformationCoin() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        coinViewModel = ViewModelProvider(requireActivity()).get(CoinViewModel::class.java)
+
         arguments?.let {
             idCoin = it.getString("id") ?: "bitcoin"
         }
-
-        coinViewModel = ViewModelProvider(requireActivity()).get(CoinViewModel::class.java)
 
         coinViewModel.getInformCoinById(idCoin)
 
@@ -49,14 +49,17 @@ class InformationCoin() : Fragment() {
             } else {
                 binding.progressBar.visibility = View.GONE
                 binding.cardInform.visibility = View.VISIBLE
+                binding.nameCoin.text = ""
             }
         }
 
         coinViewModel.error.observe(viewLifecycleOwner) {
             if(it) {
+                binding.cardInform.visibility = View.GONE
                 binding.errorLoading.visibility = View.VISIBLE
             } else {
                 binding.errorLoading.visibility = View.GONE
+                binding.nameCoin.text = ""
             }
         }
 

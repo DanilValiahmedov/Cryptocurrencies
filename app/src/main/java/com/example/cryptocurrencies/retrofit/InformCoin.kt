@@ -17,5 +17,5 @@ data class  ImageCoin(
 
 @Serializable
 data class DescriptionCoin(
-    val en: String?,
+    val en: String,
 )
