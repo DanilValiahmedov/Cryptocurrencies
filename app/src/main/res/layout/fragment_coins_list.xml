@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".CoinsList"
+    tools:context=".fragment.CoinsList"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -80,7 +80,7 @@
             android:indeterminate="true"
             android:indeterminateTint="@color/mainColor"
             android:layout_gravity="center"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
 
         <ScrollView
             android:layout_width="match_parent"
