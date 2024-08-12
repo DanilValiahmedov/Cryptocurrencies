@@ -1,4 +1,4 @@
-package com.example.cryptocurrencies.recycleview
+package com.example.cryptocurrencies.presentation.recycleview
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,8 +10,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.cryptocurrencies.Currency
-import com.example.cryptocurrencies.fragment.InformationCoin
+import com.example.cryptocurrencies.presentation.Currency
+import com.example.cryptocurrencies.presentation.fragment.InformationCoin
 import com.example.cryptocurrencies.R
 import com.google.android.material.chip.ChipGroup
 

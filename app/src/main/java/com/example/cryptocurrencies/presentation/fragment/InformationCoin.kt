@@ -1,4 +1,4 @@
-package com.example.cryptocurrencies.fragment
+package com.example.cryptocurrencies.presentation.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,11 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.example.cryptocurrencies.CoinViewModel
 import com.example.cryptocurrencies.databinding.FragmentInformationCoinBinding
+import com.example.cryptocurrencies.presentation.CoinViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
-class InformationCoin() : Fragment() {
+@AndroidEntryPoint
+class InformationCoin : Fragment() {
 
     private  lateinit var  binding: FragmentInformationCoinBinding
     private lateinit var coinViewModel: CoinViewModel
@@ -28,11 +29,11 @@ class InformationCoin() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        coinViewModel = ViewModelProvider(requireActivity()).get(CoinViewModel::class.java)
-
         arguments?.let {
             idCoin = it.getString("id") ?: "bitcoin"
         }
+
+        coinViewModel = ViewModelProvider(requireActivity()).get(CoinViewModel::class.java)
 
         coinViewModel.getInformCoinById(idCoin)
 

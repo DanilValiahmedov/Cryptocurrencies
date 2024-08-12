@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".fragment.CoinsList"
+    tools:context=".presentation.fragment.CoinsList"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView

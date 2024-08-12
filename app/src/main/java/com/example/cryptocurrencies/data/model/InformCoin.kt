@@ -1,4 +1,4 @@
-package com.example.cryptocurrencies.retrofit
+package com.example.cryptocurrencies.data.model
 
 import kotlinx.serialization.Serializable
 

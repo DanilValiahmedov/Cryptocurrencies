@@ -1,6 +1,6 @@
-package com.example.cryptocurrencies.recycleview
+package com.example.cryptocurrencies.presentation.recycleview
 
-import com.example.cryptocurrencies.Currency
+import com.example.cryptocurrencies.presentation.Currency
 
 data class RecycleCoin(
     val nameCoin: String,

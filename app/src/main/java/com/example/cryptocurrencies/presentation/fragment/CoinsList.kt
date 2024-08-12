@@ -1,4 +1,4 @@
-package com.example.cryptocurrencies.fragment
+package com.example.cryptocurrencies.presentation.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,16 +9,17 @@ import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.cryptocurrencies.CoinViewModel
-import com.example.cryptocurrencies.Currency
+import com.example.cryptocurrencies.presentation.Currency
 import com.example.cryptocurrencies.R
 import com.example.cryptocurrencies.databinding.FragmentCoinsListBinding
-import com.example.cryptocurrencies.recycleview.AdapterCoin
+import com.example.cryptocurrencies.presentation.CoinViewModel
+import com.example.cryptocurrencies.presentation.recycleview.AdapterCoin
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
+class CoinsList : Fragment() {
 
-class CoinsList() : Fragment() {
-
-    private  lateinit var  binding: FragmentCoinsListBinding
+    private lateinit var  binding: FragmentCoinsListBinding
     private lateinit var coinViewModel: CoinViewModel
 
     override fun onCreateView(
@@ -66,12 +67,12 @@ class CoinsList() : Fragment() {
         }
 
         binding.usdBut.setOnClickListener {
-            //adapter.setCoinsList(listOf())
+            adapter.setCoinsList(listOf())
             coinViewModel.currencySelection(Currency.USD)
         }
 
         binding.rubBut.setOnClickListener {
-            //adapter.setCoinsList(listOf())
+            adapter.setCoinsList(listOf())
             coinViewModel.currencySelection(Currency.RUB)
         }
 
