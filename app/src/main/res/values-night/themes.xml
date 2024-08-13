@@ -4,4 +4,13 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
+
+    <style name="back">
+        <item name="android:background">@color/backgroundBlack</item>
+    </style>
+
+    <style name="buttonBack" parent="back">
+        <item name="android:src">@drawable/backbuttonblack</item>
+    </style>
+
 </resources>

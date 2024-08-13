@@ -45,9 +45,8 @@ class InformationCoin : Fragment() {
         }
 
         coinViewModel.loading.observe(viewLifecycleOwner) {
-            if(it) {
-                binding.progressBar.visibility = View.VISIBLE
-            } else {
+            if(it) binding.progressBar.visibility = View.VISIBLE
+            else {
                 binding.progressBar.visibility = View.GONE
                 binding.cardInform.visibility = View.VISIBLE
                 binding.nameCoin.text = ""

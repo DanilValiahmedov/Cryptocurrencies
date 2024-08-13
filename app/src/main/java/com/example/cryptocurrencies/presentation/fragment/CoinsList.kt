@@ -51,19 +51,13 @@ class CoinsList : Fragment() {
         }
 
         coinViewModel.loading.observe(viewLifecycleOwner) {
-            if(it) {
-                binding.progressBar.visibility = View.VISIBLE
-            } else {
-                binding.progressBar.visibility = View.GONE
-            }
+            if(it) binding.progressBar.visibility = View.VISIBLE
+             else binding.progressBar.visibility = View.GONE
         }
 
         coinViewModel.error.observe(viewLifecycleOwner) {
-            if(it) {
-                binding.errorLoading.visibility = View.VISIBLE
-            } else {
-                binding.errorLoading.visibility = View.GONE
-            }
+            if(it) binding.errorLoading.visibility = View.VISIBLE
+            else binding.errorLoading.visibility = View.GONE
         }
 
         binding.usdBut.setOnClickListener {
@@ -88,16 +82,18 @@ class CoinsList : Fragment() {
 
     private fun activeButton(currency: Currency) {
         when(currency) {
-            Currency.USD -> activeButtonChangingColor(binding.usdBut, binding.rubBut)
-            Currency.RUB -> activeButtonChangingColor(binding.rubBut, binding.usdBut)
+            Currency.USD -> activeButtonChangingColor(binding.usdBut, listOf(binding.rubBut))
+            Currency.RUB -> activeButtonChangingColor(binding.rubBut, listOf(binding.usdBut))
         }
     }
 
-    private fun activeButtonChangingColor(butActiv: Button, butNoActiv: Button) {
+    private fun activeButtonChangingColor(butActiv: Button, butNoActivs: List<Button>) {
         butActiv.setTextColor(ContextCompat.getColor(requireContext(), R.color.mainColor))
         butActiv.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.activeButton))
-        butNoActiv.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-        butNoActiv.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.inactiveButton))
+        for (butNoActiv in butNoActivs) {
+            butNoActiv.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+            butNoActiv.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.inactiveButton))
+        }
     }
 
 
